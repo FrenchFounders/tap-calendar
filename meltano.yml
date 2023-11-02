@@ -16,4 +16,4 @@ plugins:
     - name: oauth_credentials.refresh_token
     - name: user_id
     select:
-      - event_lists.*
+      - events.*

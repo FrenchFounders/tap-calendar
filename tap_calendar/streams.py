@@ -32,6 +32,10 @@ class EventsStream(CalendarStream):
             params["timeMin"] = "2023-10-01T00:00:00Z"
         return params
     
+    def post_process(self, row:dict, context:dict):
+        # Posting row when event hasn't been deleted
+        if row.get("status") != "cancelled":
+            return row
 
     
     
