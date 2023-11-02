@@ -1,0 +1,245 @@
+{
+  "type": "object",
+  "properties": {
+    "kind": {
+      "type": "string",
+      "description": "The kind of the event."
+    },
+    "etag": {
+      "type": "string",
+      "description": "The ETag of the event."
+    },
+    "id": {
+      "type": "string",
+      "description": "The immutable ID of the event."
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the event."
+    },
+    "htmlLink": {
+      "type": "string",
+      "description": "The HTML link of the event."
+    },
+    "created": {
+      "type": "string",
+      "description": "The creation date of the event."
+    },
+    "updated": {
+      "type": "string",
+      "description": "The update date of the event."
+    },
+    "summary": {
+      "type": "string",
+      "description": "The summary of the event."
+    },
+    "creator": {
+      "type": "object",
+      "description": "The creator of the event.",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The email of the creator."
+        }
+      }
+    },
+    "organizer": {
+      "type": "object",
+      "description": "The organizer of the event.",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "The email of the organizer."
+        }
+      }
+    },
+    "start": {
+      "type": "object",
+      "description": "The start date and time of the event.",
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "description": "The date and time of the start."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone of the start."
+        }
+      }
+    },
+    "end": {
+      "type": "object",
+      "description": "The end date and time of the event.",
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "description": "The date and time of the end."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone of the end."
+        }
+      }
+    },
+    "recurringEventId": {
+      "type": "string",
+      "description": "The ID of the recurring event."
+    },
+    "originalStartTime": {
+      "type": "object",
+      "description": "The original start date and time of the event.",
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "description": "The date and time of the original start."
+        },
+        "timeZone": {
+          "type": "string",
+          "description": "The time zone of the original start."
+        }
+      }
+    },
+    "iCalUID": {
+      "type": "string",
+      "description": "The iCal UID of the event."
+    },
+    "sequence": {
+      "type": "integer",
+      "description": "The sequence number of the event."
+    },
+    "attendees": {
+      "type": "array",
+      "description": "List of attendees for the event.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email of the attendee."
+          },
+          "responseStatus": {
+            "type": "string",
+            "description": "The response status of the attendee."
+          },
+          "displayName": {
+            "type": "string",
+            "description": "The display name of the attendee."
+          },
+          "self": {
+            "type": "boolean",
+            "description": "Indicates if the attendee is self."
+          },
+          "organizer": {
+            "type": "boolean",
+            "description": "Indicates if the attendee is the organizer."
+          }
+        }
+      }
+    },
+    "hangoutLink": {
+      "type": "string",
+      "description": "The Hangout link for the event."
+    },
+    "conferenceData": {
+      "type": "object",
+      "description": "Conference data for the event.",
+      "properties": {
+        "entryPoints": {
+          "type": "array",
+          "description": "List of conference entry points.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entryPointType": {
+                "type": "string",
+                "description": "Type of conference entry point."
+              },
+              "uri": {
+                "type": "string",
+                "description": "URI of the conference entry point."
+              },
+              "label": {
+                "type": "string",
+                "description": "Label of the conference entry point."
+              },
+              "pin": {
+                "type": "string",
+                "description": "PIN for the conference entry point."
+              }
+            }
+          }
+        },
+        "conferenceSolution": {
+          "type": "object",
+          "description": "Details about the conference solution.",
+          "properties": {
+            "key": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Type of conference solution key."
+                }
+              }
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the conference solution."
+            },
+            "iconUri": {
+              "type": "string",
+              "description": "URI of the conference solution icon."
+            }
+          }
+        },
+        "conferenceId": {
+          "type": "string",
+          "description": "The ID of the conference."
+        }
+      }
+    },
+    "reminders": {
+      "type": "object",
+      "description": "The reminders for the event.",
+      "properties": {
+        "useDefault": {
+          "type": "boolean",
+          "description": "Indicates if default reminders are used."
+        }
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "description": "List of attachments for the event.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fileUrl": {
+            "type": "string",
+            "description": "URL of the attachment file."
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the attachment."
+          },
+          "mimeType": {
+            "type": "string",
+            "description": "MIME type of the attachment."
+          },
+          "iconLink": {
+            "type": "string",
+            "description": "Link to the icon for the attachment."
+          },
+          "fileId": {
+            "type": "string",
+            "description": "ID of the attachment file."
+          }
+        }
+      }
+    },
+    "eventType": {
+      "type": "string",
+      "description": "The type"
+    }
+  }
+}
