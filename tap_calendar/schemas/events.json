@@ -9,6 +9,10 @@
       "type": "string",
       "description": "The ETag of the event."
     },
+    "user_email": {
+      "type":"string",
+      "description": "The eventList summary"
+    },
     "id": {
       "type": "string",
       "description": "The immutable ID of the event."
@@ -241,5 +245,5 @@
       "type": "string",
       "description": "The type"
     }
-  }
+    }
 }

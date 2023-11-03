@@ -10,8 +10,7 @@ from tap_calendar.client import CalendarStream
 SCHEMAS_DIR = Path(__file__).parent / Path("./schemas")
 
 class EventsStream(CalendarStream):
-    """Define custom stream."""
-    name = "events"
+    name = "calendar_events"
     schema_filepath = SCHEMAS_DIR / "events.json"
     replication_key = "nextSyncToken"
     records_jsonpath = "$.items[*]"

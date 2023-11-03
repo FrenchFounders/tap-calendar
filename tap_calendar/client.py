@@ -42,7 +42,7 @@ class CalendarStream(RESTStream):
         """Return a dictionary of values to be used in URL parameterization."""
         params = super().get_url_params(context, next_page_token)
         if next_page_token:
-            params["page"] = next_page_token
+            params["pageToken"] = next_page_token
         return params
 
 
@@ -50,6 +50,8 @@ class CalendarStream(RESTStream):
         """Parse the response and return an iterator of result rows."""
         #  Extract custom replication key from json response, then add it in record
         json = response.json()
+        event_summary = json.get("summary")
         for item in json.get("items",{}):
+            item["user_email"] = event_summary
             item["nextSyncToken"] = json.get("nextSyncToken",None)
         yield from extract_jsonpath(self.records_jsonpath, input=json)
