@@ -28,7 +28,7 @@ class EventsStream(CalendarStream):
             params["syncToken"] = syncToken
         else:
             #TODO parameterize it
-            params["timeMin"] = "2022-01-01T00:00:00Z"
+            params["timeMin"] = "2021-01-01T00:00:00Z"
         return params
     
     def post_process(self, row:dict, context:dict):
