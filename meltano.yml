@@ -13,7 +13,11 @@ plugins:
     settings:
     - name: oauth_credentials.client_id
     - name: oauth_credentials.client_secret
+      kind: password
     - name: oauth_credentials.refresh_token
+      kind: password
     - name: user_id
+    - name: user_email
+    - name: aws_sqs.queue_name
     select:
       - events.*

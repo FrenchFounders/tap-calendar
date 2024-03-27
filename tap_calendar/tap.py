@@ -27,14 +27,30 @@ class TapCalendar(Tap):
         th.Property(
             "oauth_credentials.client_secret",
             th.StringType,
+            secret=True,
             description="Your google client_secret",
         ),
         th.Property(
             "oauth_credentials.refresh_token",
             th.StringType,
+            secret=True,
             description="Your google refresh token",
         ),
-        th.Property("user_id", th.StringType, description="Your Google User ID"),
+        th.Property(
+            "user_id",
+            th.StringType,
+            description="Your Google User ID"
+        ),
+        th.Property(
+            "user_email",
+            th.StringType,
+            description="Your Google User Email"
+        ),
+        th.Property(
+            "aws_sqs.queue_name",
+            th.StringType,
+            description="SQS queue name used to received a message when the refresh token has expired"
+        )
     ).to_dict()
 
     def discover_streams(self) -> List[Stream]:

@@ -45,7 +45,6 @@ class CalendarStream(RESTStream):
             params["pageToken"] = next_page_token
         return params
 
-
     def parse_response(self, response: requests.Response) -> Iterable[dict]:
         """Parse the response and return an iterator of result rows."""
         #  Extract custom replication key from json response, then add it in record
