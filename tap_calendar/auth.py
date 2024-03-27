@@ -49,8 +49,7 @@ class CalendarAuthenticator(OAuthAuthenticator, metaclass=SingletonMeta):
             result = queue.send_messages(Entries=[msg])
             logging.info(f"Sent invalid_grant message to AWS SQS queue {queue_name} : {result}")
 
-    @property
-    def update_access_token(self):
+    def update_access_token(self) -> None:
         try:
             super().update_access_token()
         except RuntimeError as error:
