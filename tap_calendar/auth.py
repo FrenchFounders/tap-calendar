@@ -45,7 +45,7 @@ class CalendarAuthenticator(OAuthAuthenticator, metaclass=SingletonMeta):
         if queue_name:
             sqs = self.get_aws_sqs()
             queue = sqs.get_queue_by_name(QueueName=queue_name)
-            msg = {"Id": str(uuid4()), "MessageBody": json.dumps({"email": self.config.get("user_email")})}
+            msg = {"Id": str(uuid4()), "MessageBody": json.dumps({"event": "teamGoogleTokenExpired", "payload": self.config.get("user_id")})}
             result = queue.send_messages(Entries=[msg])
             logging.info(f"Sent invalid_grant message to AWS SQS queue {queue_name} : {result}")
 

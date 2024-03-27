@@ -17,7 +17,6 @@ plugins:
     - name: oauth_credentials.refresh_token
       kind: password
     - name: user_id
-    - name: user_email
     - name: aws_sqs.queue_name
     select:
       - events.*

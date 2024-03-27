@@ -42,11 +42,6 @@ class TapCalendar(Tap):
             description="Your Google User ID"
         ),
         th.Property(
-            "user_email",
-            th.StringType,
-            description="Your Google User Email"
-        ),
-        th.Property(
             "aws_sqs.queue_name",
             th.StringType,
             description="SQS queue name used to received a message when the refresh token has expired"
