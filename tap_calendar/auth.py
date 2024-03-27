@@ -54,7 +54,7 @@ class CalendarAuthenticator(OAuthAuthenticator, metaclass=SingletonMeta):
         try:
             super().update_access_token()
         except RuntimeError as error:
-            if "{'error': 'invalid_grant', 'error_description': 'Bad Request'}" in str(error):
+            if "'error': 'invalid_grant'" in str(error):
                 user_id = self.config.get("user_id")
                 user_email = self.config.get("user_email")
                 logging.info(f'Received invalid_grant for {user_email} (id={user_id})')
