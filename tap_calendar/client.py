@@ -47,7 +47,6 @@ class CalendarStream(RESTStream):
 
     
     def validate_response(self, response: requests.Response, context=None) -> None:
-        self.logger.warning(response.status_code)
         if response.status_code == 410:
             self.logger.warning("Received 410 Gone: sync token expired. Resetting sync token for full sync...")
             self._tap.load_state({"error" : '410'})
