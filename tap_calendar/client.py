@@ -49,7 +49,7 @@ class CalendarStream(RESTStream):
     def validate_response(self, response: requests.Response, context=None) -> None:
         if response.status_code == 410:
             self.logger.warning("Received 410 Gone: sync token expired. Resetting sync token for full sync...")
-            self._tap.load_state({"error" : '410'})
+            self._tap.reset_state()
         return super().validate_response(response)
 
     def parse_response(self, response: requests.Response) -> Iterable[dict]:

@@ -49,12 +49,10 @@ class TapCalendar(Tap):
         )
     ).to_dict()
 
-    def load_state(self, state: dict[str, Any]) -> None:
-        super().load_state(state)
-        if state == {'error': '410'}:
-            self.replication_key_value = None
-            self.state.__setitem__('bookmarks', {})
-            write_message(StateMessage(self.state))
+    def reset_state(self) -> None:
+        """Custom method to reset state (in case of 410 response)"""
+        self.replication_key_value = None
+        write_message(StateMessage({'bookmarks' : {}}))
 
     def discover_streams(self) -> List[Stream]:
         """Return a list of discovered streams."""
