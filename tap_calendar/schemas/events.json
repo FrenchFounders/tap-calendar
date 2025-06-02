@@ -13,6 +13,10 @@
       "type":"string",
       "description": "The eventList summary"
     },
+    "user_id": {
+      "type":"string",
+      "description": "The user Google ID"
+    },
     "id": {
       "type": "string",
       "description": "The immutable ID of the event."
