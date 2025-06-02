@@ -59,4 +59,5 @@ class CalendarStream(RESTStream):
         for item in json.get("items",{}):
             item["user_email"] = event_summary
             item["nextSyncToken"] = json.get("nextSyncToken",None)
+            item["user_id"] = self.config.get("user_id")
         yield from extract_jsonpath(self.records_jsonpath, input=json)
