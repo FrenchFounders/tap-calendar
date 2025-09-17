@@ -27,14 +27,6 @@ class EventsStream(CalendarStream):
         if syncToken:
             params["syncToken"] = syncToken
         else:
-            #TODO parameterize it
+            # TODO parameterize it
             params["timeMin"] = "2021-01-01T00:00:00Z"
         return params
-    
-    def post_process(self, row:dict, context:dict):
-        # Posting row when event hasn't been deleted
-        if row.get("status") != "cancelled":
-            return row
-
-    
-    
