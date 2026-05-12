@@ -11,12 +11,10 @@ plugins:
     - catalog
     - discover
     settings:
-    - name: oauth_credentials.client_id
-    - name: oauth_credentials.client_secret
+    - name: service_account_credentials
       kind: password
-    - name: oauth_credentials.refresh_token
-      kind: password
-    - name: user_id
-    - name: aws_sqs.queue_name
-    select:
-      - events.*
+    - name: delegated_admin_email
+    - name: excluded_user_emails
+      kind: array
+    - name: start_date
+

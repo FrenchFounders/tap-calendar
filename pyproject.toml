@@ -16,7 +16,9 @@ packages = [
 python = "<3.12,>=3.7.1"
 requests = "^2.25.1"
 singer-sdk = ">=0.33,<0.34"
-boto3 = ">=1.34,<1.35"
+# OAuthJWTAuthenticator signs RS256 assertions via PyJWT — pin
+# explicitly so we don't rely on a transitive singer-sdk constraint.
+PyJWT = {version = "^2.8.0", extras = ["crypto"]}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

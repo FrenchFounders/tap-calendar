@@ -1,58 +1,66 @@
 """tap-calendar tap class."""
 
-from typing import Any, List
+from typing import List
 
-from singer_sdk import Tap, Stream
+from singer_sdk import Stream, Tap
 from singer_sdk import typing as th  # JSON schema typing helpers
-from singer_sdk._singerlib import StateMessage, write_message
 
-from tap_calendar.streams import (
-    EventsStream
-)
+from tap_calendar.streams import EventsStream, UsersStream
 
 STREAM_TYPES = [
-    EventsStream
+    UsersStream,
+    EventsStream,
 ]
 
 
 class TapCalendar(Tap):
     """tap-calendar tap class."""
+
     name = "tap-calendar"
 
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "oauth_credentials.client_id",
-            th.StringType,
-            description="Your google client_id",
-        ),
-        th.Property(
-            "oauth_credentials.client_secret",
+            "service_account_credentials",
             th.StringType,
             secret=True,
-            description="Your google client_secret",
+            required=True,
+            description=(
+                "JSON content of the Google service account key. The "
+                "service account must have Domain-Wide Delegation "
+                "enabled with the scopes "
+                "'admin.directory.user.readonly' and 'calendar.readonly'."
+            ),
         ),
         th.Property(
-            "oauth_credentials.refresh_token",
+            "delegated_admin_email",
             th.StringType,
-            secret=True,
-            description="Your google refresh token",
+            required=True,
+            description=(
+                "Email of a Google Workspace admin used to impersonate "
+                "when calling the Admin SDK Directory API to list users."
+            ),
         ),
         th.Property(
-            "user_id",
-            th.StringType,
-            description="Your Google User ID"
+            "excluded_user_emails",
+            th.ArrayType(th.StringType),
+            default=[],
+            description=(
+                "List of user emails to exclude from sync (e.g. shared "
+                "mailboxes, system accounts, former employees). "
+                "Matching is case-insensitive."
+            ),
         ),
         th.Property(
-            "aws_sqs.queue_name",
+            "start_date",
             th.StringType,
-            description="SQS queue name used to received a message when the refresh token has expired"
-        )
+            description=(
+                "RFC3339 lower bound applied as ``timeMin`` on the "
+                "initial full sync of each user (until a syncToken is "
+                "acquired). Optional: if omitted, Google returns every "
+                "event the user has."
+            ),
+        ),
     ).to_dict()
-
-    def reset_state(self) -> None:
-        """Custom method to reset state (in case of 410 response)"""
-        self.replication_key_value = None
-        write_message(StateMessage({'bookmarks' : {}}))
 
     def discover_streams(self) -> List[Stream]:
         """Return a list of discovered streams."""
